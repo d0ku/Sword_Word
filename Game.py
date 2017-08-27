@@ -100,9 +100,9 @@ class Game:
                 break
 
         if self.deleted:
-            self.music_object.play_sound("music/succes.ogg")
+            self.music_object.play_sound("succes.ogg")
         else:
-            self.music_object.play_sound("music/failure.ogg")
+            self.music_object.play_sound("failure.ogg")
 
     def reset(self):
         self.entered_chars=0
@@ -134,7 +134,7 @@ class Game:
         for x in self.words:
             if x.end_point >self.box.xsize:
                 clear_screen()
-                self.music_object.play_sound("music/game_lost.ogg")
+                self.music_object.play_sound("game_lost.ogg")
                 print(self.language.game[3].word)
                 self.exit_state=1
                 print(self.language.game[4].word)
@@ -142,7 +142,7 @@ class Game:
 
     def char_handling(self,char):
         if char!=None:
-            self.music_object.play_sound("music/button_pressed.ogg",1)
+            self.music_object.play_sound("button_pressed.ogg",1)
             if ord(char)==13 or ord(char)==32:
                 self.deleted=False
                 self.previous_word=self.last_word

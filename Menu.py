@@ -58,14 +58,14 @@ class Menu:
         if temp == 119:  # add up arrow key
             #pygame.init()
             #song = pygame.mixer.Sound("music/menu_change.ogg")
-            self.connected_object.music.play_sound("music/menu_change.ogg")
+            self.connected_object.music.play_sound("menu_change.ogg")
             #song.play()
             self.move_pointer("up")
         elif temp == 115:  # add down arrow key
-            self.connected_object.music.play_sound("music/menu_change.ogg")
+            self.connected_object.music.play_sound("menu_change.ogg")
             self.move_pointer("down")
         elif temp == 13:
-            self.connected_object.music.play_sound("music/menu_click.ogg")
+            self.connected_object.music.play_sound("menu_click.ogg")
             self.pressed_entry = self.entries_names[self.selected_entry]
             self.open_entry(self.pressed_entry)
 
@@ -88,7 +88,7 @@ class OptionsMenu(Menu):
         if entry_name.word == self.connected_object.language.menu[7].word:
             dictionary_location = os.getcwd()+"/dictionaries"
             dictionary_list = return_all_dictionaries(dictionary_location)
-            dictionaries_menu = DictionariesMenu()
+            dictionaries_menu = ChooseMenu("/dictionaries/")
             dictionaries_menu.connect_game_object(self.connected_object)
             dictionaries_menu.entries_names = []
             for x in dictionary_list:
@@ -105,7 +105,7 @@ class OptionsMenu(Menu):
         if entry_name.word == self.connected_object.language.menu[8].word:
             language_location = os.getcwd()+"/languages"
             language_list = os.listdir(language_location)
-            languages_menu = LanguagesMenu()
+            languages_menu = ChooseMenu("/languages/")
             languages_menu.connect_game_object(self.connected_object)
             languages_menu.entries_names = []
             for x in language_list:
@@ -118,6 +118,23 @@ class OptionsMenu(Menu):
                 temp = getch()
                 languages_menu.interact(temp)
             languages_menu = None
+
+        if entry_name.word == self.connected_object.language.menu[14].word:
+            music_location = os.getcwd()+"/music"
+            music_list = os.listdir(music_location)
+            music_menu = ChooseMenu("/music/")
+            music_menu.connect_game_object(self.connected_object)
+            music_menu.entries_names = []
+            for x in music_list:
+                music_menu.add_position(x)
+            music_menu.add_position(self.connected_object.language.menu[11])
+
+            clear_screen()
+            music_menu.print_menu()
+            while str(music_menu.pressed_entry) != str(self.connected_object.language.menu[11]):
+                temp = getch()
+                music_menu.interact(temp)
+            music_menu = None
             # dictionary_list=os.listdir(os.getcwd()+"/dictionaries")
         if entry_name.word == self.connected_object.language.menu[9].word:
             self.connected_object.music.switch_sound()
@@ -168,6 +185,31 @@ class LanguagesMenu(Menu):
 
         self.print_menu()
 
+class ChooseMenu(Menu):
+
+    def __init__(self,keyword,entries_names=[]):
+        self.entries_names = entries_names
+        self.keyword=keyword
+
+    def open_entry(self,entry_name):
+
+
+        for x in self.entries_names:
+            if str(entry_name)==str(x) and str(x) != str(self.connected_object.language.menu[11]) and os.path.exists(os.getcwd()+self.keyword+str(entry_name)):
+                if self.keyword=="/languages/":
+                    self.connected_object.language.load_language(os.getcwd()+"/languages/"+str(entry_name))
+                if self.keyword=="/dictionaries/":
+                    self.connected_object.game.can_be_continued=False
+                    self.connected_object.dictionary.load_dictionary(os.getcwd()+"/dictionaries/"+str(entry_name))
+                if self.keyword=="/music/":
+                    self.connected_object.music.load_music_pack(os.getcwd()+"/music/"+str(entry_name))
+                    self.connected_object.music.stop_music()
+                    self.connected_object.music.play_music("menu_music.ogg")
+
+        if str(entry_name)==str(self.connected_object.language.menu[11]):
+            pass
+
+        self.print_menu()
 
 
 
@@ -185,7 +227,7 @@ class MainMenu(Menu):
             sys.exit()
         elif str(entry_name) == str(self.connected_object.language.menu[0]):
             self.connected_object.music.stop_remember("Menu")
-            self.connected_object.music.play_music("music/game_music.ogg")
+            self.connected_object.music.play_music("game_music.ogg")
 
             self.connected_object.game.reset()
 
@@ -221,6 +263,7 @@ class MainMenu(Menu):
             options_menu.entries_names = []
             options_menu.add_position(self.connected_object.language.menu[7])
             options_menu.add_position(self.connected_object.language.menu[8])
+            options_menu.add_position(self.connected_object.language.menu[14])
             options_menu.add_position(self.connected_object.language.menu[9])
             options_menu.add_position(self.connected_object.language.menu[10])
             options_menu.add_position(self.connected_object.language.menu[11])

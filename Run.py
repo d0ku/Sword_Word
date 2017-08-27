@@ -21,16 +21,19 @@ class GameObjects:
         self.dictionary.load_dictionary()
         self.game = Game(self.box,self.language)
         self.game.choose_generator(self.dictionary)
+        self.music=Music()
+        self.game.connect_music(self.music)
 
     def connect_music(self,music):
         self.music=music
         self.game.connect_music(self.music)
 
 
-music = Music()
-music.play_music("music/menu_music.ogg")
+#music = Music()
+#music.play_music(self.connected_object.music.music_location+"menu_music.ogg")
 game_itself=GameObjects()
-game_itself.connect_music(music)
+#game_itself.connect_music(music)
+game_itself.music.play_music("menu_music.ogg")
 
 menu = MainMenu()
 menu.add_position(game_itself.language.menu[0])
