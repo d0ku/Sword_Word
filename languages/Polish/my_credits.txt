@@ -1,0 +1,12 @@
+Podziekowania naleza sie:
+panu Grady Ward za Moby Word II (lista angielskich slow)
+Projektowi Gutenberg (elektroniczna wersja Moby Word II)
+Użytkownikom freesound.org:
+	suzenako		 	(dzwieki w  grze)
+	noirenex 			(dzwiek konca gry)
+	PatrickLieberkind		(muzyka w menu)
+	Airwolf89 			(muzyka w grze)
+	newagesoup			(dzwiek klawiatury)
+	killkhan			(dzwiek wyboru w menu)
+	stumpbutt			(dzwiek nawigacji po menu)
+użytkownikowi tehvan z Stackoverflow(Podstawa klasy Getch)

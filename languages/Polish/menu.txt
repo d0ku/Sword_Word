@@ -1,0 +1,14 @@
+Nowa Gra
+Wczytaj gre
+Opcje
+Pomoc
+Tworcy
+Wyjdz z gry
+Musisz zaczac nowa gre zanim bedzie mozna kontynuowac ;) a moze zmieniles slownik?
+Wybierz slownk
+Zmien jezyk
+Wylacz/Wlacz dzwiek
+Wylacz/Wlacz muzyke
+Wstecz
+Wcisnij dowolny przycisk by powrocic do menu
+Opcje gry

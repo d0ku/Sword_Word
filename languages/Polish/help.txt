@@ -1,0 +1,9 @@
+Celem tego programu jest pomoc Ci w swobodnym pisaniu na klawiaturze
+Jezeli chcesz pisac swobodnie musisz to robic bez patrzenia na klawiature
+Ponizszy diagram pokazuje ktorymi palcami powinno sie wciskac odpowiednie klawisze
+
+zielony- maly palec
+zolty- serdeczny palec
+czerwony- srodkowy palec
+niebieski- wskazujacy palec
+bialy- kciuk

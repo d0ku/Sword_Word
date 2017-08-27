@@ -1,0 +1,12 @@
+Moby Word II by Grady Ward (English Wordslist)
+The Gutenberg Project (E-version of Moby Ward II)
+Guys from freesound.org:
+	suzenako		 	(game sounds)
+	noirenex 			(game over sound)
+	PatrickLieberkind		(menu music)
+	Airwolf89 			(game music)
+	newagesoup			(keystroke sound)
+	killkhan			(Menu select sound)
+	stumpbutt			(Menu navigation sound)
+tehvan user from Stackoverflow(Base of the Getch Class)
+

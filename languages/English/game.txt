@@ -1,0 +1,7 @@
+Destroyed words: 
+Previous word: 
+Current word: 
+GAME OVER
+Push any button to continue
+Hits per minute: 
+Real hits per minute: 

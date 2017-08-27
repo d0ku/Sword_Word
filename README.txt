@@ -1,6 +1,3 @@
-# Sword_Word
-Typing training program (game), to be used in terminal
-
 Aim of this program is to help you develop keyboard typing skill, without looking at keys
 
 It's just a simple training program, i plan to add training modes in future
