@@ -72,6 +72,9 @@ Simple credits are available in program under Credits menu entry.
 CHANGELOG:
 
 27 of August 2017 - Alpha and initial release 
+
 27 of August 2017 - Alpha 1.0.1
+
 27 of August 2017 - Alpha 1.0.1.doc
+
 28 of August 2017 - Alpha 1.0.2
