@@ -37,7 +37,7 @@ TODO:
 
 - add (create) game modes
 
-- fullfill documentation
+- fullfill documentation  -> First created in Alpha 1.0.1.doc, needs to be written though
 
 - create full license/credits list
 
@@ -64,3 +64,5 @@ Simple credits are available in program under Credits menu entry.
 CHANGELOG:
 
 27 of August 2017 - Alpha and initial release 
+27 of August 2017 - Alpha 1.0.1
+27 of August 2017 - Alpha 1.0.1.doc
