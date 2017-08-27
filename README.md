@@ -11,6 +11,10 @@ HOW TO RUN:
 
 Clone this repo or download as zip, unpack and run "python3 Run.py" in root folder
 
+In order to run this program you have to install pygame:
+
+To do so run in console "pip install pygame", if it doesn't work after this try "pip3 install pygame"
+
 INFO:
 
 Supported languages:
@@ -33,9 +37,17 @@ TODO:
 
 - add (create) game modes
 
+- fullfill documentation
+
 - create full license/credits list
 
 - change lists into dictionaries in Languages.py and its childrens
+
+- load default english word, if word in chosen language cannot be loaded  -> Done in Alpha 1.0.1
+
+- configuration files (save at exit, load at startup)
+
+- first time game run, run language choose, display license and help
 
 - CLEAN AND RETHINK SOME PIECES OF CODE
 
