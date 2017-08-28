@@ -59,7 +59,7 @@ TODO:
 
 - CLEAN AND RETHINK SOME PIECES OF CODE
 
-- Add Windows compability (Getch module timeout)
+- Add Windows compability (Getch module timeout)  Getch timeout functionality provided in Alpha 1.0.3
 
 
 LICENSE:
@@ -75,6 +75,24 @@ CHANGELOG:
 
 27 of August 2017 - Alpha 1.0.1
 
+	- load default english word, if word in chosen language cannot be loaded
+
 27 of August 2017 - Alpha 1.0.1.doc
 
+	- documentation created(Sphinx), needs to be fullfilled
+
 28 of August 2017 - Alpha 1.0.2
+
+	- sound loading module style, added Sound Packs options in menu
+
+28 of August 2017 - Alpha 1.0.3
+
+	- Getch timeout for Windows implemented
+
+	- Basic Windows support added, colors in terminal are not supported, it has some bugs, and those probably won't be corrected till Beta release
+
+	- time flow changed in Game.py (now game.timeout is real time beetwen words moves)
+
+	- added linear read option in Language.py (useful if you want to add e.g. a book , the words will be loaded one after another into game)
+
+	- some functions added to Game.py (basis of future game modes)

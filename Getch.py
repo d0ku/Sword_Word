@@ -1,3 +1,4 @@
+import time
 class _Getch:
     """Gets a single character from standard input.  Does not echo to the
 screen. (Added timemout option, if you call getch(timeout) ~ d0ku)
@@ -47,7 +48,17 @@ class _GetchWindows:
 
     def __call__(self, timeout=-1):
         import msvcrt
-        return msvcrt.getch()
+        if timeout==-1:
+            return chr(ord(msvcrt.getch()))
+        else:
+            start_time=time.time()
+            while True:
+                if msvcrt.kbhit():
+                    return chr(ord(msvcrt.getch()))
+                    break
+                elif time.time() - start_time > timeout:
+                    return None
+                    break
 
 
 getch = _Getch()

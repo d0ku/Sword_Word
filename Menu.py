@@ -147,44 +147,6 @@ class OptionsMenu(Menu):
 
         self.print_menu()
 
-class DictionariesMenu(Menu):
-
-    def open_entry(self, entry_name):
-
-
-        print(self.pressed_entry)
-        for x in self.entries_names:
-            if str(entry_name)==str(x) and str(x) !=str(self.connected_object.language.menu[11]) and os.path.exists(os.getcwd()+"/dictionaries/"+str(entry_name)):
-                print("SLOWNIK")
-                time.sleep(2)
-                self.connected_object.game.can_be_continued=False
-                self.connected_object.dictionary.load_dictionary(os.getcwd()+"/dictionaries/"+str(entry_name))
-                break
-
-        if str(entry_name) == str(self.connected_object.language.menu[11]):
-            pass
-
-        self.print_menu()
-
-class LanguagesMenu(Menu):
-
-    def open_entry(self, entry_name):
-
-        print(self.entries_names)
-        print(entry_name)
-        print(self.pressed_entry)
-        print(str(self.entries_names[2]))
-        for x in self.entries_names:
-            if str(entry_name)==str(x) and str(x) !=str(self.connected_object.language.menu[11]) and os.path.isdir(os.getcwd()+"/languages/"+str(entry_name)):
-                self.connected_object.language.load_language(os.getcwd()+"/languages/"+str(entry_name))
-                print(x)
-                time.sleep(2)
-                self.print_menu()
-        if str(entry_name) == str(self.connected_object.language.menu[11]):
-            pass
-
-        self.print_menu()
-
 class ChooseMenu(Menu):
 
     def __init__(self,keyword,entries_names=[]):
@@ -231,21 +193,18 @@ class MainMenu(Menu):
 
             self.connected_object.game.reset()
 
-            self.connected_object.game.add_word()
             while self.connected_object.game.exit_state != 1:
                 self.connected_object.game.run()
             self.connected_object.game.exit_state = 0
             self.connected_object.music.stop_remember("Game")
             self.connected_object.music.play_remember("Menu")
             # Start the game
-            #
         elif entry_name.word == self.connected_object.language.menu[1].word:
             
             if self.connected_object.game.can_be_continued == True:
                 self.connected_object.music.stop_remember("Menu")
                 self.connected_object.music.play_remember("Game")
                 self.connected_object.game.continued=True
-                self.connected_object.game.add_word()
                 while self.connected_object.game.exit_state != 1:
                     self.connected_object.game.run()
                 self.connected_object.game.exit_state = 0

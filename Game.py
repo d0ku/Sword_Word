@@ -12,6 +12,7 @@ from Functions import clear_screen,Colors
 class Game:
     continued=False
     can_be_continued=False
+    is_it_safe=True
     deleted=False
     deleted_chars=0
     deleted_words=0
@@ -19,15 +20,16 @@ class Game:
     exit_state=0
     clock_start=0
     words = []
+    word_to_append=""
     previous_word=""
     last_word = ""
-    timeout = 0.61   # timeout / getch_timeout musi byc wieksze niz 1.5
+    timeout = 0.25   # timeout / getch_timeout musi byc wieksze niz 1.5
     max_length = 5
     start_time = 0
     end_time = 0
     cycles = 0
-    getch_timeout=0.4
-    getch_counter=0
+    #getch_timeout=0.66
+    #getch_counter=0
 
     def __init__(self, box,language):
         self.box = box
@@ -38,16 +40,34 @@ class Game:
         self.dictionary = dictionary
         self.dictionary.set_box(self.box)
 
+    def set_pace(self,pace):
+        if pace=="slow":
+            self.timeout=0.5
+        if pace=="normal":
+            self.timeout=0.25
+        if pace=="fast":
+            self.timeout=0.15
+
+
+    def set_max_word_length(self,length):
+        self.max_length=length
+        
     def add_word(self):
-        temp = self.dictionary.random_english_word(self.max_length)
-        is_it_safe = True
-        # if self.box.organize_grid()[0][temp.height] == ".":
+
         for x in self.words:
-            if x.begin_point <= 0:
-                is_it_safe = False
+            if x.begin_point<=0:
+                self.is_it_safe=False
                 break
-        if is_it_safe:
-            self.words.append(temp)
+
+        if self.word_to_append=="":
+            self.word_to_append=self.dictionary.random_word(self.max_length)
+
+        if self.is_it_safe == True  and self.word_to_append!="":
+            
+            self.words.append(self.word_to_append)
+            self.word_to_append=self.dictionary.random_word(self.max_length)
+
+        self.is_it_safe=True
 
     def print_map(self):
         clear_screen()
@@ -105,6 +125,7 @@ class Game:
             self.music_object.play_sound("failure.ogg")
 
     def reset(self):
+        self.word_to_append=""
         self.entered_chars=0
         self.clock_start=0
         self.deleted_chars=0
@@ -120,7 +141,7 @@ class Game:
         self.start_time = 0
         self.end_time = 0
         self.cycles = 0
-        self.getch_counter=0
+        #self.getch_counter=0
 
     def words_move(self):
         for x in self.words:
@@ -138,6 +159,7 @@ class Game:
                 print(self.language.game[3].word)
                 self.exit_state=1
                 print(self.language.game[4].word)
+                time.sleep(2)
                 getch()
 
     def char_handling(self,char):
@@ -175,12 +197,17 @@ class Game:
 
         if self.continued:
             self.clock_start=time.time()-self.time_backup
+            self.start_time = time.clock()
+            self.end_time=time.clock()
             self.continued=False
 
-        self.end_time=time.clock()+self.getch_timeout*self.getch_counter
+        #self.end_time=time.clock()+self.getch_timeout*self.getch_counter
         #self.last_word=input()
-        temp=getch(self.getch_timeout)
-        self.getch_counter+=1
+        getch_start_time=time.time()
+        temp=getch(0.20)
+        self.end_time+=time.time()-getch_start_time
+        getch_start_time=0
+        #self.getch_counter+=1
         self.char_handling(temp)
 
         #i, o, e = select.select([], [], [], self.timeout)
