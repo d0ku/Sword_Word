@@ -81,10 +81,6 @@ class OptionsMenu(Menu):
 
     def open_entry(self, entry_name):
 
-        print(self.entries_names)
-        print("ENTRYSTUFF")
-        print(entry_name)
-        print(self.pressed_entry)
         if entry_name.word == self.connected_object.language.menu[7].word:
             dictionary_location = os.getcwd()+"/dictionaries"
             dictionary_list = return_all_dictionaries(dictionary_location)
@@ -182,7 +178,7 @@ class MainMenu(Menu):
         if str(entry_name) == str(self.connected_object.language.menu[5]):
             clear_screen()
 
-            print("See you soon :) ")
+            print(self.connected_object.language.menu[15])
 
             time.sleep(2)
 

@@ -116,14 +116,6 @@ class Language:
                 self.help_text.append(Word(y,self,self.help_text_backup,i))
             i+=1
 
-
-        #self.credits=list(map(lambda x: Word(x),self.credits))
-        #self.game=list(map(lambda x: Word(x),self.game))
-        #self.help_text=list(map(lambda x: Word(x),self.help_text))
-        #self.menu=list(map(lambda x: Word(x),self.menu))
-        #for x in self.menu:
-        #    print(x.word)
-
 class Word:
     word=""
     index=0

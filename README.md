@@ -37,6 +37,8 @@ Currently works as it should only on UNIX systems.
 
 TODO:
 
+- add diascritics support (ą,ę...)
+
 - add Game Options Menu positions
 
 - improve input in Game.py class (change timeouted getch to something better)
@@ -96,3 +98,7 @@ CHANGELOG:
 	- added linear read option in Language.py (useful if you want to add e.g. a book , the words will be loaded one after another into game)
 
 	- some functions added to Game.py (basis of future game modes)
+
+29 of August 2017 - Alpha 1.0.4
+
+	- cleaned code a bit (deleted most debug print())

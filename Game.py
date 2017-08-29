@@ -28,8 +28,6 @@ class Game:
     start_time = 0
     end_time = 0
     cycles = 0
-    #getch_timeout=0.66
-    #getch_counter=0
 
     def __init__(self, box,language):
         self.box = box
@@ -106,12 +104,6 @@ class Game:
 
     def check_words_and_input(self, word):
         for x in self.words:
-            # for i in x.word:
-           #     print(i)
-            # for i in word:
-             #   print(i)
-            #print("Comparison "+x.word)
-            #print("ypur_word_ "+word)
             if word == x.word:
                 self.deleted_chars+=len(word)
                 self.deleted=True
@@ -141,7 +133,6 @@ class Game:
         self.start_time = 0
         self.end_time = 0
         self.cycles = 0
-        #self.getch_counter=0
 
     def words_move(self):
         for x in self.words:
@@ -201,25 +192,12 @@ class Game:
             self.end_time=time.clock()
             self.continued=False
 
-        #self.end_time=time.clock()+self.getch_timeout*self.getch_counter
-        #self.last_word=input()
         getch_start_time=time.time()
         temp=getch(0.20)
         self.end_time+=time.time()-getch_start_time
         getch_start_time=0
-        #self.getch_counter+=1
+
         self.char_handling(temp)
-
-        #i, o, e = select.select([], [], [], self.timeout)
-        # if (i):
-
-        # else:
-        #    print("TIMEOUT")
-
-        #self.last_word = input()
-        
-
-        #self.check_words_and_input(self.last_word)
 
         if self.end_time - self.start_time > self.timeout:
             # that for is not elegant
@@ -234,10 +212,3 @@ class Game:
         self.add_word()
         self.cycles += 1
 
-
-# box=Grid2D(60,20)
-# box.print_2D_grid()
-
-
-# for x in range(0,100000):
-#    print(dictionary.random_english_word())

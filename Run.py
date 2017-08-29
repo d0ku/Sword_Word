@@ -48,5 +48,4 @@ menu.print_menu()
 temp="l" #27 Esc
 while True:
     temp = getch()
-    print("1st")
     menu.interact(temp)
