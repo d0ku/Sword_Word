@@ -27,6 +27,18 @@ class Grid2D:
 
         return xsize
 
+    def change_x(self):
+        self.xsize+=1
+        if self.xsize==100:
+            self.xsize=20
+        self.reset()
+
+    def change_y(self):
+        self.ysize+=1
+        if self.ysize==100:
+            self.ysize=20
+        self.reset() 
+
     def reset(self):
         self.matrix = self.generate_2D_grid(self.xsize, self.ysize)
 

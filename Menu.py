@@ -44,6 +44,21 @@ class Menu:
     def add_position(self, Word_object):
         self.entries_names.append(Word_object)
 
+    def remove_position(self, Word_object):
+        self.entries_names.remove(Word_object)
+
+    def change_position_index(self,Word_object,index):
+        self.entries_names[index]=Word_object
+
+    def get_position_index(self,Word_object):
+        return self.entries_names.index(Word_object)
+
+    def change_position(self, Word_object, Word_object_updated):
+        if Word_object in self.entries_names:
+            self.entries_names[self.entries_names.index(Word_object)]=Word_object_updated
+        else:
+            self.entries_names.append(Word_object_updated)
+
     def move_pointer(self, direction):
         if direction == "up":
             if self.selected_entry >= 1:
@@ -115,6 +130,20 @@ class OptionsMenu(Menu):
                 languages_menu.interact(temp)
             languages_menu = None
 
+        if entry_name.word == self.connected_object.language.menu[13].word:
+            game_menu = ChooseMenu("game_options")
+            game_menu.connect_game_object(self.connected_object)
+            game_menu.entries_names = []
+            entries_names.append()
+            game_menu.add_position(self.connected_object.language.menu[11])
+
+            clear_screen()
+            game_menu.print_menu()
+            while str(game_menu.pressed_entry) != str(self.connected_object.game.menu[11]):
+                temp = getch()
+                game_menu.interact(temp)
+            game_menu = None
+
         if entry_name.word == self.connected_object.language.menu[14].word:
             music_location = os.getcwd()+"/music"
             music_list = os.listdir(music_location)
@@ -137,6 +166,22 @@ class OptionsMenu(Menu):
         if entry_name.word == self.connected_object.language.menu[10].word:
             self.connected_object.music.switch_music()
 
+        if entry_name.word ==self.connected_object.language.menu[16].word:
+            #temp = self.get_position_index(self.connected_object.language.menu[16].word)
+            self.connected_object.language.menu[16].restore()
+            self.connected_object.game.max_length_change()
+            self.connected_object.language.menu[16].change(self.connected_object.language.menu[16].word + str(self.connected_object.game.max_length))
+            #self.change_position_index(self.connected_object.language.menu[16].word + str(self.connected_object.game.max_length),temp)
+        if entry_name.word==self.connected_object.language.menu[17].word:
+            self.connected_object.language.menu[17].restore()
+            self.connected_object.box.change_x()
+            self.connected_object.language.menu[17].change(self.connected_object.language.menu[17].word + str(self.connected_object.box.xsize))
+            self.connected_object.game.can_be_continued=False
+        if entry_name.word==self.connected_object.language.menu[18].word:
+            self.connected_object.language.menu[18].restore()
+            self.connected_object.box.change_y()
+            self.connected_object.language.menu[18].change(self.connected_object.language.menu[18].word + str(self.connected_object.box.ysize))
+            self.connected_object.game.can_be_continued=False
 
         if str(entry_name) == str(self.connected_object.language.menu[11]):
             pass
@@ -255,4 +300,26 @@ class MainMenu(Menu):
                 getch()
             # open credits
             #
+        
+        elif entry_name.word == self.connected_object.language.menu[13].word:
+            game_options=OptionsMenu()
+            game_options.connect_game_object(self.connected_object)
+            game_options.entries_names = []
+            self.connected_object.language.menu[16].restore()
+            self.connected_object.language.menu[16].change(self.connected_object.language.menu[16].word + str(self.connected_object.game.max_length))
+            game_options.add_position(self.connected_object.language.menu[16])
+            self.connected_object.language.menu[17].restore()
+            self.connected_object.language.menu[17].change(self.connected_object.language.menu[17].word + str(self.connected_object.box.xsize))
+            game_options.add_position(self.connected_object.language.menu[17])
+            self.connected_object.language.menu[18].restore()
+            self.connected_object.language.menu[18].change(self.connected_object.language.menu[18].word + str(self.connected_object.box.ysize))
+            game_options.add_position(self.connected_object.language.menu[18])
+            game_options.add_position(self.connected_object.language.menu[11])
+
+            clear_screen()
+            game_options.print_menu()
+            while str(game_options.pressed_entry) != str(self.connected_object.language.menu[11]):
+                temp = getch()
+                game_options.interact(temp)
+            game_options = None
         self.print_menu()

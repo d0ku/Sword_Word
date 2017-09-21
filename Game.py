@@ -34,6 +34,14 @@ class Game:
         self.connect_language(language)
         self.map_connect_words()
 
+    def max_length_change(self):
+
+        self.max_length+=1
+        
+        if self.max_length==30:
+            self.max_length=5
+
+
     def choose_generator(self, dictionary):
         self.dictionary = dictionary
         self.dictionary.set_box(self.box)

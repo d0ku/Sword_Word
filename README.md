@@ -29,7 +29,7 @@ Dictionaries, Languages and Sound Packs are designed to be modular, you can crea
 
 I will add further info for this in the future.
 
-Supported text formats is UTF-8
+Supported text format is UTF-8 (no diacritics in dictionaries ATM)
 
 That's the first project ever finished by me so be nice :D
 
@@ -39,7 +39,7 @@ TODO:
 
 - add diascritics support (ą,ę...)
 
-- add Game Options Menu positions
+- add Game Options Menu positions -> Done in Alpha 1.0.5
 
 - improve input in Game.py class (change timeouted getch to something better)
 
@@ -102,3 +102,9 @@ CHANGELOG:
 29 of August 2017 - Alpha 1.0.4
 
 	- cleaned code a bit (deleted most debug print())
+
+21 of September 2017 - Alpha 1.0.5
+
+	- deleted debug info in clear function
+
+	- added game options entry (max word length, map height, map length)

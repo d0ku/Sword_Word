@@ -4,7 +4,7 @@ Options
 Help
 Credits
 Exit Game
-You have to start New Game to have something to continue ;) or maybe you changed dictionary?
+You have to start New Game to have something to continue ;) or maybe you changed dictionary or map size?
 Choose Dictionary
 Change language
 Sound On/Off
@@ -14,3 +14,6 @@ Press any button to go back to menu
 Game Options
 Choose Soundpack
 See you soon :)
+Max word length: 
+Map length: 
+Map height: 

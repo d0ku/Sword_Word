@@ -126,9 +126,17 @@ class Word:
         self.parent=parent
         self.category=category
         self.index=index
+        self.length=len(word)
 
     def update(self):
         self.word=str(self.category[self.index])
+
+    def change(self,word):
+        self.word=word
+
+    def restore(self):
+        self.word=self.word[:self.length]
+
 
     def __str__(self):
         return self.word

@@ -3,10 +3,8 @@ import os
 def clear_screen():
     if os.name == 'posix':
         os.system("clear")
-        print("clear")
     elif os.name == 'nt':
         os.system("cls")
-        print("cls")
 
 def return_all_dictionaries(location):
     temp=os.listdir(location)
