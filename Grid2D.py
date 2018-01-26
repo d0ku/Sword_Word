@@ -78,7 +78,7 @@ class Grid2D:
         for i in range(0, len(self.matrix) + 2):
             wall += "#"
 
-        print(wall)
+        print(wall,end="\r\n")
         to_be_printed = []
         # map printing
         temp = "#"
@@ -87,7 +87,7 @@ class Grid2D:
             for x in range(0, len(matrix_temp)):
                 temp += str(matrix_temp[x][y])
             temp += "#"
-            print(temp)
+            print(temp,end="\r\n")
             temp = "#"
 
-        print(wall)
+        print(wall,end="\r\n")

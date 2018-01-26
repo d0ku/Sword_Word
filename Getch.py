@@ -1,8 +1,9 @@
 import time
+
 class _Getch:
-    """Gets a single character from standard input.  Does not echo to the
-screen. (Added timemout option, if you call getch(timeout) ~ d0ku)
-Credits: tehvan from StackOverflow for initial class"""
+
+    """Gets a single character from standard input.  Does not echo to the screen. 
+    Can be called with specified timeout."""
 
     def __init__(self):
         try:

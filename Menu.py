@@ -70,7 +70,7 @@ class Menu:
 
     def interact(self, button):
         temp = ord(button)
-        if temp == 119:  # add up arrow key
+        if temp == 119 :  # add up arrow key
             #pygame.init()
             #song = pygame.mixer.Sound("music/menu_change.ogg")
             self.connected_object.music.play_sound("menu_change.ogg")
@@ -235,8 +235,8 @@ class MainMenu(Menu):
             self.connected_object.game.reset()
 
             while self.connected_object.game.exit_state != 1:
-                self.connected_object.game.run()
-            self.connected_object.game.exit_state = 0
+                self.connected_object.game.start_game()
+            #self.connected_object.game.exit_state = 0  #this should be locked (threading)
             self.connected_object.music.stop_remember("Game")
             self.connected_object.music.play_remember("Menu")
             # Start the game
@@ -246,9 +246,10 @@ class MainMenu(Menu):
                 self.connected_object.music.stop_remember("Menu")
                 self.connected_object.music.play_remember("Game")
                 self.connected_object.game.continued=True
+                self.connected_object.game.start_game()
                 while self.connected_object.game.exit_state != 1:
-                    self.connected_object.game.run()
-                self.connected_object.game.exit_state = 0
+                    self.connected_object.game.start_game()
+                #self.connected_object.game.exit_state = 0  #this should be locked (threading)
                 self.connected_object.music.stop_remember("Game")
                 self.connected_object.music.play_remember("Menu")
                 # Load the game

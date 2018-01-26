@@ -45,6 +45,7 @@ menu.add_position(game_itself.language.menu[4])
 menu.add_position(game_itself.language.menu[5])
 menu.connect_game_object(game_itself)
 menu.print_menu()
+
 temp="l" #27 Esc
 while True:
     temp = getch()

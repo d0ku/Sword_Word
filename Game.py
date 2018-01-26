@@ -4,12 +4,14 @@ import sys
 import random
 import time
 import re
+
 from Getch import getch
 from Grid2D import Grid2D
 from WordsGenerating import Random_Word_Generator, Word
 from Functions import clear_screen,Colors
+from GameMapPrinter import GameMapPrinter
 
-class Game:
+class Game():
     continued=False
     can_be_continued=False
     is_it_safe=True
@@ -28,6 +30,7 @@ class Game:
     start_time = 0
     end_time = 0
     cycles = 0
+    end_printer = 0
 
     def __init__(self, box,language):
         self.box = box
@@ -78,18 +81,14 @@ class Game:
     def print_map(self):
         clear_screen()
 
-        print(self.language.game[6].word+str(round(self.entered_chars/(time.time()-self.clock_start) *60,2)))
-        print(self.language.game[5].word+str(round(self.deleted_chars/(time.time()-self.clock_start) *60,2)))
-        print(self.language.game[0].word+str(self.deleted_words))
+        print(self.language.game[6].word+str(round(self.entered_chars/(time.time()-self.clock_start) *60,2)), end="\r\n")
+        print(self.language.game[5].word+str(round(self.deleted_chars/(time.time()-self.clock_start) *60,2)), end="\r\n")
+        print(self.language.game[0].word+str(self.deleted_words), end="\r\n")
 
         if self.deleted:
-            print(self.language.game[1].word+Colors.GREEN+self.previous_word+Colors.ENDCOLOR)
+            print(self.language.game[1].word+Colors.GREEN+self.previous_word+Colors.ENDCOLOR, end="\r\n")
         else:
-            print(self.language.game[1].word+Colors.RED+ self.previous_word+Colors.ENDCOLOR)
-
-
-        
-
+            print(self.language.game[1].word+Colors.RED+ self.previous_word+Colors.ENDCOLOR, end="\r\n")
         
         self.box.print_2D_grid(0)
 
@@ -101,12 +100,13 @@ class Game:
                 does_it_contain=True
                 break
         if does_it_contain:
-            print(self.language.game[2].word+Colors.GREEN+self.last_word+Colors.ENDCOLOR)
+            print(self.language.game[2].word+Colors.GREEN+self.last_word+Colors.ENDCOLOR, end="\r\n")
         else:
-            print(self.language.game[2].word+Colors.RED+ self.last_word+Colors.ENDCOLOR)
+            print(self.language.game[2].word+Colors.RED+ self.last_word+Colors.ENDCOLOR, end="\r\n")
 
     def map_connect_words(self):
         self.box.words_connect(self.words)
+
     def connect_language(self,language):
         self.language=language
 
@@ -180,43 +180,48 @@ class Game:
                 #here comes the menu invoke
                 #sys.exit()
                 self.exit_state=1
+                self.end_printer=1
             else:
                 self.entered_chars+=1
                 self.last_word+=char
                 self.print_map()
                 return None
 
-    def run(self):
+    def start_game(self):
         self.can_be_continued=True
         if self.cycles == 0:
+            self.exit_state=0
             self.clock_start=time.time()
             self.start_time = time.clock()
-            self.print_map()
             self.end_time=time.clock()
-
-        if self.continued:
+            if self.end_printer==0:
+                self.game_map_printer = GameMapPrinter(self)
+                self.game_map_printer.start()
+        elif self.continued:
+            self.exit_state=0
             self.clock_start=time.time()-self.time_backup
             self.start_time = time.clock()
             self.end_time=time.clock()
             self.continued=False
+            if self.end_printer==0:
+                self.game_map_printer = GameMapPrinter(self)
+                self.game_map_printer.start()
 
         getch_start_time=time.time()
-        temp=getch(0.20)
+        temp=getch() #
         self.end_time+=time.time()-getch_start_time
         getch_start_time=0
 
-        self.char_handling(temp)
+        self.char_handling(temp) #
 
-        if self.end_time - self.start_time > self.timeout:
-            # that for is not elegant
-            for x in range(0, int(round((self.end_time - self.start_time) / self.timeout))):
+        #if self.end_time - self.start_time > self.timeout:
+        #    # that for is not elegant
+        #    for x in range(0, int(round((self.end_time - self.start_time) / self.timeout))):
+        #
+        #       self.words_move() #
+        #       self.check_collisions() #
+        #       self.print_map() #
 
-                self.words_move()
-                self.check_collisions()
-                self.print_map()
-
-            self.start_time = self.end_time
-            self.end_time=time.clock()
-        self.add_word()
+        #   self.start_time = self.end_time
+        #   self.end_time=time.clock()
         self.cycles += 1
-
