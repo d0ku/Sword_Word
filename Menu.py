@@ -26,7 +26,7 @@ class Menu:
         clear_screen()
 
         for x in self.entries_names:
-    
+
             if type(x) is Word:
                 x.update()
                 if x != self.entries_names[self.selected_entry]:
@@ -70,16 +70,16 @@ class Menu:
 
     def interact(self, button):
         temp = ord(button)
-        if temp == 119:  # add up arrow key
+        if temp == 119 or temp == 107:  # add up arrow key
             #pygame.init()
             #song = pygame.mixer.Sound("music/menu_change.ogg")
             self.connected_object.music.play_sound("menu_change.ogg")
             #song.play()
             self.move_pointer("up")
-        elif temp == 115:  # add down arrow key
+        elif temp == 115 or temp == 106:  # add down arrow key
             self.connected_object.music.play_sound("menu_change.ogg")
             self.move_pointer("down")
-        elif temp == 13:
+        elif temp == 13 or temp == 108:
             self.connected_object.music.play_sound("menu_click.ogg")
             self.pressed_entry = self.entries_names[self.selected_entry]
             self.open_entry(self.pressed_entry)
